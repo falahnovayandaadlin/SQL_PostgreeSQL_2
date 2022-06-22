@@ -1,0 +1,11 @@
+--- Catatan ---
+-- Urutan --
+SELECT 
+FROM 
+JOIN .. ON ...
+WHERE 
+-------------------(setelah where bisa pake AS)
+GROUP BY 
+HAVING .. 
+ORDER BY .. ASC|DESC
+LIMIT 

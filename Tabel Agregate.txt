@@ -1,0 +1,38 @@
+---------------------------- Tabel Aggregate ----------------------------
+SELECT * FROM penjualan
+SELECT * FROM pelanggan
+SELECT * FROM barang
+
+- CTE untuk joining 3 tabel dan melakukan aggregate perkalian untuk mencari total harga
+with
+subq as
+(
+	select 
+	pj.id_customer,
+	pj.id_barang,
+	pj.jumlah_barang,
+	pj.harga,
+	pj.jumlah_barang*pj.harga as total_harga,
+	pj.lini,
+	pl.nama,
+	pl.cabang_sales,
+	pl.group
+from penjualan pj
+left join pelanggan pl
+on pj.id_customer = pl.id_customer
+)
+select 
+	subq.id_customer,
+	subq.id_barang,
+	subq.jumlah_barang,
+	subq.harga,
+	subq.total_harga,
+	subq.lini,
+	subq.nama,
+	subq.cabang_sales,
+	subq.group,
+	br.nama_barang,
+	br.kemasan
+from subq
+left join barang br
+on subq.id_barang = br.kode_barang 
